@@ -1,0 +1,23 @@
+** Importance of Name node in Hadoop Cluster :
+
+> Name node is the centerpiece of an HDFS system,it keeps the directory tree of all files in the system.
+> NameNode stores the metadata of HDFS 
+> NameNode keeps the track where the file data is kept across the cluster.
+> Whenever a file is placed in the cluster a corresponding entry of its location is maintained by the NameNode.
+> The NameNode is a multithreaded system and processes requests simultaneously from multiple clients.
+
+** Name Node consists of two important files on its hard disk :
+> fsimage(file system image): it contains
+- A directory structure of the HDFS
+- Replication level of the files
+- Modification and access times of files
+- Access permissions of files and directories
+- Block size of files
+- Blocks constituting a file
+
+> Edits
+- When any operation takes place in HDFS, the directory structure gets modified
+- These modifications are stored in the memory as well as in the edits files (edits files are stored on the hard disk)
+- If the existing fsimage file gets merged with edits, we'll get an updated fsimage file
+- This process is called "checkpointing" and is carried out by the Secondary NameNode. It takes the fsimage and edits
+  files from the NameNode and returns updated fsimage file after merging.
